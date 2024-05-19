@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "pg_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./resources/init_populate_db_script.sql:/docker-entrypoint-initdb.d/init_populate_db_script.sql
+    ports:
+      - "5432:5432"
