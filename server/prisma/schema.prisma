@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Comment {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @map("userid")
+  textMessage String    @map("textmessage") @db.VarChar(320)
+  createAt    DateTime  @default(now()) @map("createat")
+  updateAt    DateTime? @updatedAt @map("updateat")
+  rateCount   Int       @default(0) @map("ratecount")
+  isEdit      Boolean   @default(false) @map("isedit")
+  user        User      @relation(fields: [userId], references: [id])
+  parent      Comment?  @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade)
+  children    Comment[] @relation("ParentChild")
+  parentId    Int?      @map("parentid")
+
+  @@map("comments")
+}
+
+model User {
+  id         Int    @id @default(autoincrement())
+  userName   String @map("username")
+  base64icon String
+
+  comments Comment[]
+
+  @@map("users")
+}

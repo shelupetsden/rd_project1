@@ -6,6 +6,10 @@
   a modern front-end build tool offering a faster and leaner development experience. The combination of React and Vite
   gives the optimal development experience for building complex web interfaces.
 
+- **TailwindCSS**: We are using TailwindCSS, a utility-first CSS framework for rapid UI development. TailwindCSS allows
+  us to create responsive designs with ease, and its utility-first principle promotes component reuse and helps to
+  maintain a consistent design across the application.
+
 - **Prisma**: Prisma, an open-source database toolkit, is used as an interface to the database. It simplifies database
   access and operations by providing an Object-Relational Mapping (ORM) layer. Prisma supports a multitude of databases
   and can be used to build various types of servers.
@@ -24,4 +28,5 @@
 
 **Client**:
 
-1. Start the client using `npm run dev`. The client application will run on `port 5173`.
+1. Install the Moment.js library with `npm install moment`.
+2. Start the client using `npm run dev`. The client application will run on `port 5173`.

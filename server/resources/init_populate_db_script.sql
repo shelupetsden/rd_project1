@@ -65,3 +65,8 @@ INSERT INTO comments(userId, textMessage, createAt)
 VALUES (2,
         'Woah, your project looks awesome! How long have you been coding for? I''m still new, but think I want to dive into React as well soon. Perhaps you can give me an insight on where I can learn React? Thanks!',
         CURRENT_TIMESTAMP - INTERVAL '1 month');
+
+
+INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (3, 2, 'NESTED 1 LEVEL 1', '2024-04-19 18:07:40.878149', null, 0, false, 1);
+INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (4, 3, 'NESTED 1 LEVEL 2', '2024-04-19 18:07:40.878149', null, 0, false, 1);
+INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (5, 1, 'NESTED 2 LEVEL ', '2024-04-19 18:07:40.878149', null, 0, false, 3);
