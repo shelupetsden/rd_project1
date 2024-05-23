@@ -70,3 +70,5 @@ VALUES (2,
 INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (3, 2, 'NESTED 1 LEVEL 1', '2024-04-19 18:07:40.878149', null, 0, false, 1);
 INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (4, 3, 'NESTED 1 LEVEL 2', '2024-04-19 18:07:40.878149', null, 0, false, 1);
 INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (5, 1, 'NESTED 2 LEVEL ', '2024-04-19 18:07:40.878149', null, 0, false, 3);
+INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (6, 3, 'NESTED 1 LEVEL 3', '2021-11-19 18:07:40.878000', null, 0, false, 5);
+INSERT INTO project1.comments (id, userid, textmessage, createat, updateat, ratecount, isedit, parentid) VALUES (7, 3, 'NESTED 1 LEVEL 4', '2021-11-19 18:07:40.878000', null, 0, false, 6);

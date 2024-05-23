@@ -1,11 +1,13 @@
-const EditButton = () => {
+const EditButton = ({comment, onClick}) => {
+
     return (
         <div>
-            <a href="#" className="flex justify-between items-center gap-1 text-indigo-800 font-bold ">
+            <a href="#" className="flex justify-between items-center gap-1 text-indigo-800 font-bold "
+               onClick={onClick}>
                 <div className="w-4 h-5">
                     <svg fill="currentColor" height="18px" width="14px" version="1.1" viewBox="0 0 18 18"
                          xmlns="http://www.w3.org/2000/svg">
-                        <g id="Page-1" stroke="none" stroke-width="1">
+                        <g id="Page-1" stroke="none" strokeWidth="1">
                             <g id="Core" transform="translate(-213.000000, -129.000000)">
                                 <g id="create" transform="translate(213.000000, 129.000000)">
                                     <path

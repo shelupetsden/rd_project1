@@ -1,32 +1,26 @@
-import {createContext, useMemo} from "react";
-import {getAllComments} from "../../services/comments.js";
+import {createContext, useEffect} from "react";
+import commentReducer from "../state/reducer.js";
 import {useAsync} from "../../customhooks/hooks.js";
+import {getAllComments} from "../../services/comments.js";
+import {asyncUseReducer} from "../state/customReducer.js";
 
 export const Context = createContext(null);
 
 const MainContext = ({children}) => {
+
     const {loading, error, value: comments = []} = useAsync(getAllComments);
 
-    const commentsByParentId = useMemo(() => {
-        if (comments == null) return [];
-        const group = {};
-        comments.forEach(comment_ => {
-                group[comment_.parentId] ||= []
-                group[comment_.parentId].push(comment_);
-            }
-        )
-        return group;
-    }, [comments])
+    useEffect(() => {
+        dispatch({type: 'POPULATE_COMMENTS', payload: comments});
+    }, [loading, comments]);
 
-    function getReplier(parentId) {
-        return commentsByParentId[parentId]
-    }
+    const [state, dispatch] = asyncUseReducer(commentReducer, {comments: []});
 
     if (loading) return (<h1>Loading...</h1>);
     if (error) return <h1>{error}</h1>;
 
     return (
-        <Context.Provider value={{comments, getReplier, rootComment: commentsByParentId[null]}}>
+        <Context.Provider value={{state, dispatch}}>
             {children}
         </Context.Provider>
     );

@@ -1,9 +1,9 @@
-import {makeRequests} from "./makeRequests.js";
+import {makeRequest} from "./getRequests.js";
 
 export function getUserById(id) {
-    return makeRequests(`users/${id}`);
+    return makeRequest(`users/${id}`, {method: 'GET'});
 }
 
 export function getAllUsers() {
-    return makeRequests('users');
+    return makeRequest('users', {method: 'GET'});
 }
