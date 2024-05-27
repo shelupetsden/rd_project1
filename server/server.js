@@ -51,7 +51,7 @@ app.get("/comments/:id", async (req, res) => {
     }), id);
 })
 
-
+//---------DELETE--------
 app.delete("/comments/:id", async (req, res) => {
     const {id} = req.params;
     logger.info(`Comment delete: ${id}`);
@@ -59,12 +59,15 @@ app.delete("/comments/:id", async (req, res) => {
         where: {id: Number(id)}
     }), id);
 
-    return getAllCommentsWithUser(id);
+    return getAllCommentsWithUser();
 })
+
+//-----------------
 
 async function getComments(parentId = null) {
     const comments = await commitToDb(prisma.comment.findMany({
-        where: { parentId },
+        where: {parentId},
+        orderBy: {createAt: 'desc'},
         select: {
             id: true,
             userId: true,
@@ -91,8 +94,7 @@ async function getComments(parentId = null) {
 }
 
 async function getAllCommentsWithUser(id) {
-    const rootComments = await commitToDb(getComments(id));
-    logger.info(rootComments);
+    const rootComments = await commitToDb(getComments(null), id);
     if (Array.isArray(rootComments)) {
         rootComments.forEach((comment) => {
             if (Array.isArray(comment.children)) {

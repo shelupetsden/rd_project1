@@ -1,13 +1,10 @@
-import React, {useContext} from "react";
-import {Context} from "./context/MainContext.jsx";
-import {useAsyncFn} from "../customhooks/hooks.js";
-import {deleteComment} from "../services/comments.js";
+import React from "react";
 
-const DeleteButton = ({onClick}) => {
+const DeleteButton = ({onClick, disabled, shortView}) => {
 
     return (<div>
-        <button onClick={onClick}
-                className="flex justify-between items-center gap-1 text-red-600 font-bold">
+        <button onClick={onClick} disabled={disabled}
+                className="flex justify-between items-center gap-1 text-red-600 font-bold disabled:opacity-50">
             <div className="w-4 h-5">
                 <svg fill="currentColor" height="18px" width="14px" viewBox="0 0 14 18"
                      xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +14,7 @@ const DeleteButton = ({onClick}) => {
                     </g>
                 </svg>
             </div>
-            Delete
+            {shortView ? '' : 'Delete'}
         </button>
     </div>)
 }

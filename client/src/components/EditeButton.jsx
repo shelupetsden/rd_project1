@@ -1,9 +1,8 @@
-const EditButton = ({comment, onClick}) => {
+const EditButton = ({comment, onClick, disabled, shortView}) => {
 
     return (
         <div>
-            <a href="#" className="flex justify-between items-center gap-1 text-indigo-800 font-bold "
-               onClick={onClick}>
+            <button className="flex justify-between items-center gap-1 text-indigo-800 font-bold disabled:opacity-50" onClick={onClick} disabled={disabled}>
                 <div className="w-4 h-5">
                     <svg fill="currentColor" height="18px" width="14px" version="1.1" viewBox="0 0 18 18"
                          xmlns="http://www.w3.org/2000/svg">
@@ -18,8 +17,8 @@ const EditButton = ({comment, onClick}) => {
                         </g>
                     </svg>
                 </div>
-                Edit
-            </a>
+                {shortView || 'Edit'}
+            </button>
         </div>
     )
 }

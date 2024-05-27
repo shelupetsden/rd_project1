@@ -28,5 +28,4 @@
 
 **Client**:
 
-1. Install the Moment.js library with `npm install moment`.
-2. Start the client using `npm run dev`. The client application will run on `port 5173`.
+1. Start the client using `npm run dev`. The client application will run on `port 5173`.
