@@ -1,5 +1,5 @@
 import MainBackGround from "../common/MainBackGround.jsx";
-import CommentCardList from "../CommentCardList.jsx";
+import CommentCardList from "../comment/CommentCardList.jsx";
 
 const Container = () => {
     return (

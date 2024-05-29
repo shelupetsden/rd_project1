@@ -2,7 +2,8 @@
 
 ## Technology Stack
 
-- **React + Vite**: This project is built using React, a powerful JavaScript library to build user interfaces, and Vite,
+- **React + Vite**: This project is built using React, a powerful JavaScript library to build replyUser interfaces, and
+  Vite,
   a modern front-end build tool offering a faster and leaner development experience. The combination of React and Vite
   gives the optimal development experience for building complex web interfaces.
 
@@ -17,14 +18,17 @@
 - **Axios**: Axios, a promise-based HTTP client, is used for handling HTTP requests. It allows both request and response
   interception, supports async/await syntax, and can transform request and response data.
 
+- **PostgreSQL**: PostgreSQL is a powerful, open-source relational database system known for its reliability and robust
+  features. It offers ACID compliance, transactions, and support for various data types. In this project, PostgreSQL
+  is used as the database management system for storing and managing data.
+
 ## Setup and Run
 
 **Service**:
 
 1. Run `docker-compose.yml` with the command `docker-compose up`.
-2. Seed the database using `npx prisma db seed`.
-3. Generate the Prisma client using `npx prisma generate`.
-4. Start the server using `npm run devStart`. The server starts on `port 3001`.
+2. Generate the Prisma client using `npx prisma generate`.
+3. Start the server using `npm run devStart`. The server starts on `port 3001`.
 
 **Client**:
 

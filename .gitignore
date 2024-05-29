@@ -122,7 +122,7 @@ jspm_packages
 *.tmPreferences.cache
 *.stTheme.cache
 
-# workspace files are user-specific
+# workspace files are replyUser-specific
 *.sublime-workspace
 
 # project files should be checked into the resources, unless a significant
@@ -423,7 +423,7 @@ tags
 ### SublimeText ###
 # cache files for sublime text
 
-# workspace files are user-specific
+# workspace files are replyUser-specific
 
 # project files should be checked into the resources, unless a significant
 # proportion of contributors will probably not be using SublimeText

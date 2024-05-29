@@ -12,15 +12,30 @@ import winston from 'winston';
 dotenv.config();
 
 const app = fastify();
-
-app.register(cookie)
+const CURRENT_USER_ID = 4;
+app.register(cookie, {secret: process.env.COOKIE_SECRET})
 app.register(sensible)
+
+app.addHook("onRequest", (request, response, done) => {
+    if (request.cookies.userId !== CURRENT_USER_ID) {
+        request.cookies.userId = CURRENT_USER_ID;
+        response.clearCookie("userId");
+        response.setCookie("userId", CURRENT_USER_ID);
+    }
+
+    done();
+})
+
 app.register(cors, {
-    // origin: process.env.CLIENT_URL,
-    origin: true,
+    origin: process.env.CLIENT_URL, //true
     credentials: true
 })
-const prisma = new PrismaClient();
+
+const prisma = new PrismaClient(
+    {
+        log: ['query', 'info', 'warn'],
+    }
+);
 
 app.get("/comments", async (req, res) => {
     return getAllCommentsWithUser();
@@ -49,6 +64,27 @@ app.get("/comments/:id", async (req, res) => {
             }
         }
     }), id);
+})
+
+//---------CREATE--------
+app.post("/comments", async (req, res) => {
+    const body = req.body;
+    const newComment = body.newComment;
+    logger.info("Create a new comment", newComment);
+    await commitToDb(prisma.comment.create(
+        {
+            data: {
+                userId: req.cookies.userId,
+                textMessage: newComment.textMessage,
+                parentId: newComment.parentId,
+                createAt: new Date(),
+                isEdit: false,
+                updateAt: null
+
+            }
+        }));
+
+    return getAllCommentsWithUser();
 })
 
 //---------DELETE--------
@@ -108,8 +144,8 @@ async function getAllCommentsWithUser(id) {
 
 app.put("/comments/:id", async (req, res) => {
     const {id} = req.params;
-    const updateComment = req.body; // Assuming the update data is sent in the request body
-    // logger.info(`Comment updated: ${JSON.stringify(updateComment)}`);
+    const updateComment = req.body;
+
     logger.info(`Comment updated: ${updateComment.textMessage}`);
 
     await commitToDb(prisma.comment.update({
@@ -127,7 +163,7 @@ app.put("/comments/:id", async (req, res) => {
 });
 
 
-app.get("/user/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
     const {id} = req.params;
     return commitToDb(
         prisma.user.findUnique({

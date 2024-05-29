@@ -7,3 +7,7 @@ export function getUserById(id) {
 export function getAllUsers() {
     return makeRequest('users', {method: 'GET'});
 }
+
+export const getUserId = () => {
+    return document.cookie.match(/userId=(?<id>[^;]+);?$/).groups.id
+};

@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import CommentCard from "./CommentCard.jsx";
-import {Context} from "./context/MainContext.jsx";
+import {Context} from "../context/MainContext.jsx";
 
 
 const CommentCardList = () => {

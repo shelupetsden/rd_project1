@@ -1,6 +1,6 @@
-const ReplyButton = ({shortView}) => {
+const ReplyButton = ({shortView, setReplyShow, disabled}) => {
     return (
-        <a href="#" className="flex justify-between items-center gap-1 text-indigo-800 font-bold ">
+        <button onClick={()=>setReplyShow(true)} className="flex justify-between items-center gap-1 text-indigo-800 font-bold disabled:opacity-50" disabled={disabled}>
             <div className="w-3 h-3">
                 <svg fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -8,7 +8,7 @@ const ReplyButton = ({shortView}) => {
                 </svg>
             </div>
             {shortView ? '' : 'Reply'}
-        </a>
+        </button>
     )
 }
 export default ReplyButton;

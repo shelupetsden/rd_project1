@@ -1,16 +1,21 @@
-export default function commentReducer(state = comments, action) {
+export default function reducer(state, action) {
 
+    //TODO add error handler
     switch (action.type) {
         case 'POPULATE_COMMENTS':
-            return {...state, comments: action.payload};
         case "DELETE_COMMENT_SUCCESS":
-            console.log(state)
-            return {comments: action.payload};
-        case "DELETE_COMMENT_FAIL":
-            return {...state}
         case "UPDATE_COMMENT_SUCCESS":
-            return {comments: action.payload};
+        case "CREATE_COMMENT_SUCCESS":
+            // initial state
+            return {...state, comments: action.payload};
+        case "DELETE_COMMENT_FAIL":
         case "UPDATE_COMMENT_FAIL":
-            return {...state};
+        case "CREATE_COMMENT_FAIL":
+        case "GET_CURRENT_USER_ERROR":
+            return {...state}
+        case "GET_CURRENT_USER_SUCCESS":
+            return {...state, user: action.payload};
+        default:
+            return {...state}
     }
 }

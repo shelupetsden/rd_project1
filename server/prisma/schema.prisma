@@ -21,7 +21,7 @@ model Comment {
   updateAt    DateTime? @updatedAt @map("updateat")
   rateCount   Int       @default(0) @map("ratecount")
   isEdit      Boolean   @default(false) @map("isedit")
-  user        User      @relation(fields: [userId], references: [id])
+  replyUser        User      @relation(fields: [userId], references: [id])
   parent      Comment?  @relation("ParentChild", fields: [parentId], references: [id], onDelete: Cascade)
   children    Comment[] @relation("ParentChild")
   parentId    Int?      @map("parentid")
